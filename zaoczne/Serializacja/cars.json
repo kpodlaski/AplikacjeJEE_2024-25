@@ -1,0 +1,11 @@
+[ {
+  "brand" : "Volvo",
+  "year" : 2005,
+  "plate" : "EL12345",
+  "id" : 1
+}, {
+  "brand" : "Syrenka",
+  "year" : 1974,
+  "plate" : "LWX1234",
+  "id" : 2
+} ]
