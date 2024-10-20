@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class CarRegistry {
@@ -40,7 +41,7 @@ public class CarRegistry {
         ObjectMapper om = new ObjectMapper();
         om.enable(SerializationFeature.INDENT_OUTPUT);
         try {
-            Car[] cars = om.readValue(new File("cars.json"),Car[].class);
+            List<Car> cars = Arrays.asList(om.readValue(new File("cars.json"),Car[].class));
             for (Car c :cars)
             {
                 System.out.println(c.getBrand()+" "+c.getPlate());
