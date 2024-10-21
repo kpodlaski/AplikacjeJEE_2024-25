@@ -1,7 +1,10 @@
 package wfis.jee;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Car {
     private int ID;
+    @JsonProperty("marka")
     private String brand;
     private int year;
     private String plate;

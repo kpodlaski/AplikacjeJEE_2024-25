@@ -13,7 +13,7 @@ import java.util.List;
 public class CarRegistry {
 
     public static void main(String[] args) {
-        serialize();
+        //serialize();
         deserialize();
     }
 
