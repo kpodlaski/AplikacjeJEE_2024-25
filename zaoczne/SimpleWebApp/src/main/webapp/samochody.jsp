@@ -1,4 +1,4 @@
-<%--
+<%@ page import="wfis.jee.simplewebapp.Car" %><%--
   Created by IntelliJ IDEA.
   User: user
   Date: 27.10.2024
@@ -12,6 +12,9 @@
     <title>Title</title>
 </head>
 <body>
-Samochód ${car.brand} rok produkcji ${car.year}
+<%! wfis.jee.simplewebapp.Car c = new Car(); %>
+<% c.setBrand("XYZ"); %>
+Samochód ${car.brand} rok produkcji ${car.year} </>br>
+S2 ${c.brand}
 </body>
 </html>
