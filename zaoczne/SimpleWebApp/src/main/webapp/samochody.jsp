@@ -25,7 +25,17 @@
             out.write("</tr>");
         }
     }
+    else {
+        for (Car ct : repo.getCarsByBrand(brand)){
+            c.copyFrom(ct);
 %>
+    <tr><td>${c.brand}</td><td>${c.year}</td></tr>
+<%
+        }
+    }
+%>
+
+
 </table>
 </body>
 </html>
