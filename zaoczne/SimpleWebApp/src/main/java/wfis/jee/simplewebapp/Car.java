@@ -13,6 +13,11 @@ public class Car {
         this.year = year;
     }
 
+    public void copyFrom(Car car){
+        this.brand = car.brand;
+        this.year = car.year;
+    }
+
     public String getBrand() {
         return brand;
     }

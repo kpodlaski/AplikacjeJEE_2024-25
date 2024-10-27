@@ -13,10 +13,10 @@ public class CarRepo {
         cars.add(new Car("Polonez",1995));
         cars.add(new Car("Polonez",1993));
     }
-    List<Car> getAll(){
+    public List<Car> getAll(){
         return cars;
     }
-    List<Car> getCarsByBrand(String brand){
+    public List<Car> getCarsByBrand(String brand){
         List<Car> tempCars = new ArrayList<>();
         for (Car c : cars){
             if(c.getBrand().toLowerCase().equals(brand.toLowerCase())){
@@ -26,7 +26,7 @@ public class CarRepo {
         return tempCars;
     }
     //Add Methods for all possible get queries
-    boolean addCar(Car car){
+    public boolean addCar(Car car){
         return cars.add(car);
     }
     //Add Methods for update, detete  queries

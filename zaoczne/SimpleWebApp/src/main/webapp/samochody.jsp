@@ -6,15 +6,26 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="car" class="wfis.jee.simplewebapp.Car" scope="session"/>
+<jsp:useBean id="repo" class="wfis.jee.simplewebapp.CarRepo" scope="application"/>
+<jsp:useBean id="c" class="wfis.jee.simplewebapp.Car" scope="request"/>
 <html>
 <head>
-    <title>Title</title>
+    <title>Samochody</title>
 </head>
 <body>
-<%! wfis.jee.simplewebapp.Car c = new Car(); %>
-<% c.setBrand("XYZ"); %>
-Samochód ${car.brand} rok produkcji ${car.year} </>br>
-S2 ${c.brand}
+<table>
+    <tr><td>Marka</td><td>Rok produkcji</td></tr>
+<%
+    String brand = request.getParameter("brand");
+    if (brand == null) {
+        for (Car ct : repo.getAll() ) {
+            out.write("<tr>");
+            out.write("<td>" + ct.getBrand() + "</td>");
+            out.write("<td>" + ct.getYear() + "</td>");
+            out.write("</tr>");
+        }
+    }
+%>
+</table>
 </body>
 </html>
