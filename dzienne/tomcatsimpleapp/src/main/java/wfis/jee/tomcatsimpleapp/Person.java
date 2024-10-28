@@ -1,16 +1,13 @@
 package wfis.jee.tomcatsimpleapp;
 
 public class Person {
-
-    private static int lastId;
     private int ID;
     private String name;
     private String surname;
     private Function function;
 
     public Person(){
-        lastId++;
-        ID = lastId;
+        ID = -1;
         name = "John";
         surname = "Doe";
         function = null;
@@ -53,5 +50,12 @@ public class Person {
 
     public void setFunction(Function function) {
         this.function = function;
+    }
+
+    public void copyFrom(Person p) {
+        ID = p.ID;
+        name = p.name;
+        surname = p.surname;
+        function=p.function;
     }
 }
