@@ -1,8 +1,9 @@
 <%@ page import="wfis.jee.tomcatsimpleapp.Person" %>
 <jsp:useBean id="person" class="wfis.jee.tomcatsimpleapp.Person" scope="session">
-  <jsp:setProperty name="person" property="name" param="name" ></jsp:setProperty>
-  <jsp:setProperty name="person" property="surname" param="surname"></jsp:setProperty>
 </jsp:useBean>
+
+<jsp:setProperty name="person" property="name" param="name" ></jsp:setProperty>
+<jsp:setProperty name="person" property="surname" param="surname"></jsp:setProperty>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
