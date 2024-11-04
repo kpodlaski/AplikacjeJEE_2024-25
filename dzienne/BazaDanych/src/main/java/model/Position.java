@@ -1,6 +1,6 @@
 package model;
 
-public class Postition {
+public class Position {
     private int id;
     private String name;
 

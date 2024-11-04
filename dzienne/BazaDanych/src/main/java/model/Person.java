@@ -4,7 +4,7 @@ public class Person {
     private int id;
     private String name;
     private String surname;
-    private Postition position;
+    private Position position;
 
     public int getId() {
         return id;
@@ -30,11 +30,11 @@ public class Person {
         this.surname = surname;
     }
 
-    public Postition getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    public void setPosition(Postition position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 }
