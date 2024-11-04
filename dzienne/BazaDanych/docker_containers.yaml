@@ -1,0 +1,14 @@
+# see README.txt for info
+
+version: '3.8'
+services:
+  pgsql:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: passABC
+    volumes:
+      #- pgdata:/var/lib/postgresql/data
+      - "./docker_confs/pgsql/pracownicy.sql:/tmp/pracownicy.sql"
+      - "./docker_confs/pgsql/init_db.sh:/docker-entrypoint-initdb.d/init-db.sh"
