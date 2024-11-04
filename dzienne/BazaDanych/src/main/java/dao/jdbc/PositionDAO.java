@@ -1,6 +1,5 @@
 package dao.jdbc;
 
-import dao.PositionDAO;
 import model.Position;
 
 import java.util.List;
