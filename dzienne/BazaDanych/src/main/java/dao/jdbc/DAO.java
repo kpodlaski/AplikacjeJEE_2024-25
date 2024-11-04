@@ -10,7 +10,19 @@ public class  DAO implements dao.DAO {
     private PersonDAO personDAO;
     private PositionDAO positionDAO;
 
+    {
+        try {
+            Class.forName("org.postgresql.Driver").newInstance();
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
     @Override
+
     public List<Position> getAllPositions() {
         return positionDAO.getAllPositions();
     }

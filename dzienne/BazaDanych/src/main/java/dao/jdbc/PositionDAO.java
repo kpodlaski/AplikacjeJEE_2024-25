@@ -5,6 +5,19 @@ import model.Position;
 import java.util.List;
 
 public class PositionDAO implements dao.PositionDAO{
+
+    {
+        try {
+            Class.forName("org.postgresql.Driver").newInstance();
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public List<Position> getAllPositions() {
         return null;

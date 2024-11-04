@@ -5,6 +5,17 @@ import model.Person;
 import java.util.List;
 
 public class PersonDAO implements dao.PersonDAO {
+    {
+        try {
+            Class.forName("org.postgresql.Driver").newInstance();
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
     @Override
     public List<Person> getAllPersons() {
         return null;
