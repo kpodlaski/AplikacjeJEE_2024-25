@@ -1,3 +1,7 @@
+import dao.StawiskoDAO;
+import dao.jdbc.StanowiskoDAOImpl;
+import model.Stanowisko;
+
 import java.sql.*;
 
 public class JDBCIntro {
@@ -10,7 +14,14 @@ public class JDBCIntro {
                 "dbuser");
         //simpleDBQuery(dbCon);
         preparedStatementDBQuery(dbCon);
+        daoTest(dbCon);
         dbCon.close();
+    }
+
+    private static void daoTest(Connection dbCon) {
+        StawiskoDAO stanowiskoDAO = new StanowiskoDAOImpl();
+        Stanowisko st = stanowiskoDAO.getStanowisko(2);
+
     }
 
     private static void preparedStatementDBQuery(Connection dbCon) throws SQLException {
