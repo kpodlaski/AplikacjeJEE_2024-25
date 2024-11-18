@@ -27,6 +27,7 @@ public class SimpleJDBCExample {
         }
         rs.close();
         pstm.close();
+        System.out.println(con.getMetaData().getURL());
         con.close();
 
     }

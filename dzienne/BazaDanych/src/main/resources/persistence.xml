@@ -6,5 +6,27 @@
   <persistence-unit name="default">
 
   </persistence-unit>
-    <persistence-unit name="appdb"/>
+    <persistence-unit name="appdb">
+      <class>model.jpa.Unit</class>
+      <class>model.jpa.Person</class>
+      <class>model.jpa.Position</class>
+      <properties>
+        <property name="toplink.jdbc.url" value="jdbc:postgresql://localhost:5432/appdb"/>
+        <property name="toplink.jdbc.driver" value="org.postgresql.Driver"/>
+        <property name="toplink.jdbc.user" value="dbuser"/>
+        <property name="toplink.jdbc.password" value="dbuser"/>
+        <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/appdb"/>
+        <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+        <property name="hibernate.connection.username" value="dbuser"/>
+        <property name="hibernate.connection.password" value="dbuser"/>
+        <property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost:5432/appdb"/>
+        <property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver"/>
+        <property name="openjpa.ConnectionUserName" value="dbuser"/>
+        <property name="openjpa.ConnectionPassword" value="dbuser"/>
+        <property name="eclipselink.jdbc.url" value="jdbc:postgresql://localhost:5432/appdb"/>
+        <property name="eclipselink.jdbc.driver" value="org.postgresql.Driver"/>
+        <property name="eclipselink.jdbc.user" value="dbuser"/>
+        <property name="eclipselink.jdbc.password" value="dbuser"/>
+      </properties>
+    </persistence-unit>
 </persistence>

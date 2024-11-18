@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="model.jpa.Unit">
+        <table name="jednostka" schema="public" catalog="appdb"/>
+        <attributes>
+            <id name="id">
+                <column name="id" precision="-1"/>
+            </id>
+            <basic name="nazwa">
+                <column name="nazwa" nullable="false"/>
+            </basic>
+            <many-to-many name="personel" target-entity="model.jpa.Person">
+                <join-table name="pracjednlnk" schema="public" catalog="appdb">
+                    <join-column name="id_jedn" nullable="false" referenced-column-name="id"/>
+                    <inverse-join-column name="id_prac" nullable="false" referenced-column-name="id"/>
+                </join-table>
+            </many-to-many>
+        </attributes>
+    </entity>
+    <entity class="model.jpa.Person">
+        <table name="pracownik" schema="public" catalog="appdb"/>
+        <attributes>
+            <id name="id">
+                <column name="id" precision="-1"/>
+            </id>
+            <basic name="imie">
+                <column name="imie" nullable="false"/>
+            </basic>
+            <basic name="nazwisko">
+                <column name="nazwisko" nullable="false"/>
+            </basic>
+            <one-to-one name="position" optional="true" target-entity="model.jpa.Position">
+                <join-column name="stanowisko" nullable="false" referenced-column-name="id"/>
+            </one-to-one>
+            <many-to-many name="units" mapped-by="personel" target-entity="model.jpa.Unit"/>
+        </attributes>
+    </entity>
+    <entity class="model.jpa.Position">
+        <table name="stanowisko" schema="public" catalog="appdb"/>
+        <attributes>
+            <id name="id">
+                <column name="id" precision="-1"/>
+            </id>
+            <basic name="nazwa">
+                <column name="nazwa" nullable="false"/>
+            </basic>
+        </attributes>
+    </entity>
+</entity-mappings>

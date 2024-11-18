@@ -12,4 +12,5 @@ public interface PositionDAO {
     int delete(Position p);
     int deletePosition(int id);
 
+    void close();
 }

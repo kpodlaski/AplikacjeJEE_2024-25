@@ -4,6 +4,11 @@ public class Position {
     private int id;
     private String name;
 
+    public Position(int id, String nazwa) {
+        this.id = id;
+        this.name = nazwa;
+    }
+
     public int getId() {
         return id;
     }
