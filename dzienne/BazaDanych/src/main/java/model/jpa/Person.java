@@ -7,20 +7,20 @@ import java.util.List;
 @Entity
 @Table(name = "pracownik", schema = "public", catalog = "appdb")
 public class Person {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
     private int id;
     @Basic
     @Column(name = "imie", nullable = true, length = -1)
-    private String imie;
+    private String name;
     @Basic
     @Column(name = "nazwisko", nullable = true, length = -1)
-    private String nazwisko;
+    private String surname;
     @OneToOne
     @JoinColumn(name = "stanowisko", referencedColumnName = "id")
     private Position position;
-    @ManyToMany(mappedBy = "personel")
+    @ManyToMany(mappedBy = "members")
     private List<Unit> units;
 
     public int getId() {
@@ -31,20 +31,20 @@ public class Person {
         this.id = id;
     }
 
-    public String getImie() {
-        return imie;
+    public String getName() {
+        return name;
     }
 
-    public void setImie(String imie) {
-        this.imie = imie;
+    public void setName(String imie) {
+        this.name = imie;
     }
 
-    public String getNazwisko() {
-        return nazwisko;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setNazwisko(String nazwisko) {
-        this.nazwisko = nazwisko;
+    public void setSurname(String nazwisko) {
+        this.surname = nazwisko;
     }
 
     public Position getPosition() {

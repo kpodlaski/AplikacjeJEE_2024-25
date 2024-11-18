@@ -4,6 +4,9 @@ import dao.PersonDAO;
 import dao.PositionDAO;
 import model.Person;
 import model.Position;
+
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.List;
 
 public class  DAO implements dao.DAO {
@@ -21,8 +24,11 @@ public class  DAO implements dao.DAO {
             throw new RuntimeException(e);
         }
     }
-    @Override
 
+
+    private Connection con = null;
+
+    @Override
     public List<Position> getAllPositions() {
         return positionDAO.getAllPositions();
     }
@@ -63,13 +69,13 @@ public class  DAO implements dao.DAO {
     }
 
     @Override
-    public List<Person> getPersonsByName() {
-        return personDAO.getPersonsByName();
+    public List<Person> getPersonsByName(String name) {
+        return personDAO.getPersonsByName(name);
     }
 
     @Override
-    public List<Person> getPersonsBySurname() {
-        return personDAO.getPersonsBySurname();
+    public List<Person> getPersonsBySurname(String surname) {
+        return personDAO.getPersonsBySurname(surname);
     }
 
     @Override
@@ -99,5 +105,12 @@ public class  DAO implements dao.DAO {
 
     //    int deletePosition(int id);
 //    int deletePerson(int id);
-
+    public void close(){
+        try {
+            if (!con.isClosed())
+                con.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

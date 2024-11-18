@@ -28,6 +28,8 @@
         <property name="eclipselink.jdbc.driver" value="org.postgresql.Driver"/>
         <property name="eclipselink.jdbc.user" value="dbuser"/>
         <property name="eclipselink.jdbc.password" value="dbuser"/>
+
+        <property name = "hibernate.show_sql" value = "true" />
       </properties>
     </persistence-unit>
 </persistence>

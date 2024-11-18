@@ -11,7 +11,7 @@
             <basic name="nazwa">
                 <column name="nazwa" nullable="false"/>
             </basic>
-            <many-to-many name="personel" target-entity="model.jpa.Person">
+            <many-to-many name="personel" target-entity="model.jpa.Position$Person">
                 <join-table name="pracjednlnk" schema="public" catalog="appdb">
                     <join-column name="id_jedn" nullable="false" referenced-column-name="id"/>
                     <inverse-join-column name="id_prac" nullable="false" referenced-column-name="id"/>
@@ -19,7 +19,7 @@
             </many-to-many>
         </attributes>
     </entity>
-    <entity class="model.jpa.Person">
+    <entity class="model.jpa.Position$Person">
         <table name="pracownik" schema="public" catalog="appdb"/>
         <attributes>
             <id name="id">

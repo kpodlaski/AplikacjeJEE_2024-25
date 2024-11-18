@@ -6,6 +6,11 @@ public class Person {
     private String surname;
     private Position position;
 
+    public Person(){
+        name="";
+        surname="";
+        position = null;
+    }
     public Person(int id, String name, String surname, Position position) {
         this.id=id;
         this.name = name;

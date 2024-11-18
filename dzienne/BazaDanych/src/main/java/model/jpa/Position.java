@@ -2,16 +2,18 @@ package model.jpa;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "stanowisko", schema = "public", catalog = "appdb")
 public class Position {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id", nullable = false)
     private int id;
     @Basic
     @Column(name = "nazwa", nullable = true, length = -1)
-    private String nazwa;
+    private String name;
 
     public int getId() {
         return id;
@@ -21,11 +23,12 @@ public class Position {
         this.id = id;
     }
 
-    public String getNazwa() {
-        return nazwa;
+    public String getName() {
+        return name;
     }
 
-    public void setNazwa(String nazwa) {
-        this.nazwa = nazwa;
+    public void setName(String nazwa) {
+        this.name = nazwa;
     }
+
 }

@@ -4,6 +4,9 @@ public class Position {
     private int id;
     private String name;
 
+    public Position(){
+        name="";
+    }
     public Position(int id, String nazwa) {
         this.id = id;
         this.name = nazwa;
