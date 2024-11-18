@@ -9,6 +9,9 @@ import java.util.List;
 @Entity
 @Table(name = "jednostka", schema = "public", catalog = "appdb")
 public class Unit  {
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "un_seq_gen")
+    @SequenceGenerator(name = "un_seq_gen", sequenceName = "seq_id_jednostka", allocationSize = 1)
+
     @Id
     @Column(name = "id", nullable = false)
     private int id;

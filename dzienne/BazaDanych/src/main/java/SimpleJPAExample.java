@@ -22,16 +22,14 @@ public class SimpleJPAExample {
             System.out.println(j.getMembers());
         }
         Position pos = new Position();
-        pos.setId(6);
         pos.setName("developer");
-        //em.persist(pos);
         System.out.println(pos);
         em.getTransaction().begin();
-        pos = em.merge(pos);
+        em.persist(pos);
+        //pos = em.merge(pos);
         em.getTransaction().commit();
         System.out.println(pos);
         Person p1 = new Person();
-        p1.setId(10);
         p1.setName("Halina");
         p1.setSurname("Łódzka");
         p1.setPosition(pos);
@@ -41,8 +39,7 @@ public class SimpleJPAExample {
         p1.setUnits(jedn);
         j.getMembers().add(p1);
         em.getTransaction().begin();
-        p1 = em.merge(p1);
-
+        em.persist(p1);
         em.getTransaction().commit();
         em.close();
         emf.close();

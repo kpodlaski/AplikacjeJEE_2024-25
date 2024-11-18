@@ -7,7 +7,8 @@ import java.util.List;
 @Entity
 @Table(name = "pracownik", schema = "public", catalog = "appdb")
 public class Person {
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(name = "seq_gen_person", sequenceName = "seq_id_pracownik", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_gen_person")
     @Id
     @Column(name = "id", nullable = false)
     private int id;
