@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 version="3.0">
+
+    <entity class="model.jpa.Pracownik">
+        <table name="pracownik" schema="public" catalog="appdb"/>
+        <attributes>
+            <id name="id">
+                <column name="id" precision="-1"/>
+            </id>
+            <basic name="imie">
+                <column name="imie" nullable="false"/>
+            </basic>
+            <basic name="nazwisko">
+                <column name="nazwisko" nullable="false"/>
+            </basic>
+            <one-to-one name="stanowisko" optional="true" target-entity="model.jpa.Stanowisko"/>
+            <many-to-many name="jednostki" mapped-by="pracownicy" target-entity="model.jpa.Jednostka"/>
+        </attributes>
+    </entity>
+</entity-mappings>
