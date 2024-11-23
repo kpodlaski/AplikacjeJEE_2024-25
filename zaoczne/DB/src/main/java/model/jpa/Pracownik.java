@@ -17,6 +17,7 @@ public class Pracownik {
     @Column(name = "nazwisko", nullable = true, length = -1)
     private String nazwisko;
     @OneToOne
+    @JoinColumn(name = "stanowisko", referencedColumnName = "id")
     private Stanowisko stanowisko;
     @ManyToMany(mappedBy = "pracownicy")
     private List<Jednostka> jednostki;
