@@ -8,7 +8,7 @@
             <id name="id">
                 <column name="id" precision="-1"/>
             </id>
-            <basic name="nazwa">
+            <basic name="name">
                 <column name="nazwa" nullable="false"/>
             </basic>
         </attributes>

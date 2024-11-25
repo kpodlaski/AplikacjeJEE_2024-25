@@ -1,6 +1,7 @@
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
 import model.jpa.Person;
 import model.jpa.Position;
 import model.jpa.Unit;
@@ -11,6 +12,20 @@ import java.util.List;
 public class SimpleJPAExample {
 
     public static void main(String[] args) {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("appdb");
+        EntityManager em = emf.createEntityManager();
+        Query nq = em.createNamedQuery("PositionByName");
+        nq.setParameter("name","kierownik");
+        for(Position pos :  (List<Position>) nq.getResultList()){
+            System.out.println(pos.getId() + " " + pos.getName());
+        }
+        nq = em.createNamedQuery("PositionByPartialName");
+        nq.setParameter("name","r");
+        for(Position pos :  (List<Position>) nq.getResultList()){
+            System.out.println(pos.getId() + " " + pos.getName());
+        }
+    }
+    public static void main2(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("appdb");
         EntityManager em = emf.createEntityManager();
         Position position = em.find(Position.class, 1);

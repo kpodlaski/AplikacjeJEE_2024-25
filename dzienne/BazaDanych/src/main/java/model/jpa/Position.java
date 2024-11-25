@@ -3,6 +3,14 @@ package model.jpa;
 import jakarta.persistence.*;
 
 import java.util.List;
+@NamedQueries({
+        @NamedQuery(name="PositionByName",
+                query="Select pos from Position as pos where pos.name=:name"),
+        @NamedQuery(name="PositionByPartialName",
+                query="Select pos from Position as pos where pos.name like concat('%',:name,'%')")
+}
+
+)
 
 @Entity
 @Table(name = "stanowisko", schema = "public", catalog = "appdb")
