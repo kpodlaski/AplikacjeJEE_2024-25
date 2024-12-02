@@ -2,6 +2,10 @@ package wfis.jee.tomcatsimpleapp;
 
 import java.io.*;
 
+import dao.DAO;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -20,6 +24,16 @@ public class HelloServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
+        try {
+            Class.forName("org.postgresql.Driver").newInstance();
+            out.print("Driver is Ready");
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        EntityManagerFactory emf =  Persistence.createEntityManagerFactory("appdb");
+        DAO dao;
+        out.println(emf);
         out.println("</body></html>");
     }
 

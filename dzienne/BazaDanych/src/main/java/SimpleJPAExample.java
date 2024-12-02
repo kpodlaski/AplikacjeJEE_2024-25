@@ -1,3 +1,4 @@
+import dao.DAO;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -24,6 +25,29 @@ public class SimpleJPAExample {
         for(Position pos :  (List<Position>) nq.getResultList()){
             System.out.println(pos.getId() + " " + pos.getName());
         }
+        nq = em.createNamedQuery("UnitByMemberName");
+        nq.setParameter("name","Adam");
+        nq.getResultList();
+
+        DAO dao = new dao.jpa.DAO(em);
+        dao.getAllPersons();
+        dao.getPerson(3);
+        dao.getPersonsByName("Adam");
+        dao.getPersonsBySurname("kTOŚ");
+        dao.getPosition(1);
+        dao.getAllPositions();
+        dao.getPositionByName("PMAGIER");
+        Position p = new Position("IT Admin");
+        dao.insert(p);
+        Person person = new Person("Janina","Janicka",p);
+        dao.insert(person);
+        p.setName("Admin IT");
+        dao.update(p);
+        person.setSurname("Noname");
+        dao.update(person);
+        em.close();
+        emf.close();
+
     }
     public static void main2(String[] args) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("appdb");

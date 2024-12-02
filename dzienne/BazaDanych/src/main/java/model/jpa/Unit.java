@@ -2,13 +2,22 @@ package model.jpa;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
-
+@NamedQueries({
+    @NamedQuery(name = "UnitGetAll", query = "Select u from Unit as u"),
+    @NamedQuery(name="UnitByName",
+        query="Select u from Unit as u where u.name=:name"),
+    @NamedQuery(name="UnitByPartialName",
+        query="Select u from Unit as u where u.name like concat('%',:name,'%')"),
+    @NamedQuery(name="UnitByMemberName",
+        query="Select p.units from Person as p where p.name=:name"),
+    @NamedQuery(name="UnitByMemberSurname",
+        query="Select p.units from Person as p where p.surname=:surname")
+}
+)
 @Entity
 @Table(name = "jednostka", schema = "public", catalog = "appdb")
-public class Unit  {
+public class Unit extends model.Unit {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "un_seq_gen")
     @SequenceGenerator(name = "un_seq_gen", sequenceName = "seq_id_jednostka", allocationSize = 1)
     @Id
@@ -37,11 +46,11 @@ public class Unit  {
         this.name = nazwa;
     }
 
-    public List<Person> getMembers() {
+    public List<Person > getMembers() {
         return members;
     }
 
-    public void setMembers(List<Person> personel) {
-        this.members = personel;
+    public void setMembers(List<? extends model.Person> personel) {
+        this.members = (List<Person>) personel;
     }
 }

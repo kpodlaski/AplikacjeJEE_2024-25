@@ -24,11 +24,11 @@ public class Unit {
         this.name = name;
     }
 
-    public List<Person> getMembers() {
+    public List<? extends Person> getMembers() {
         return members;
     }
 
-    public void setMembers(List<Person> members) {
-        this.members = members;
+    public void setMembers(List<? extends Person> members) {
+        this.members = (List<Person>) members;
     }
 }
