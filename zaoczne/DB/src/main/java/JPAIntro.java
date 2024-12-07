@@ -1,11 +1,13 @@
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
 import model.jpa.Jednostka;
 import model.jpa.Stanowisko;
 import model.jpa.Pracownik;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class JPAIntro {
 
@@ -49,5 +51,19 @@ public class JPAIntro {
         em.persist(p2);
         em.persist(j);
         em.getTransaction().commit();
+
+        Query q = em.createNamedQuery("Stanowisko.GetByNazwa");
+        q.setParameter("nazwa","kierownik");
+        List<Stanowisko> stanowiskoList =  q.getResultList();
+        for (Stanowisko s : stanowiskoList){
+            System.out.println(s.getNazwa());
+        }
+
+        q = em.createNamedQuery("Stanowisko.GetNazwaLike");
+        q.setParameter("nazwa","e");
+        stanowiskoList =  q.getResultList();
+        for (Stanowisko s : stanowiskoList){
+            System.out.println(s.getNazwa());
+        }
     }
 }
