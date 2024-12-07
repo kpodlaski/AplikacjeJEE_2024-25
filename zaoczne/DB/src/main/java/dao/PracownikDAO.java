@@ -5,6 +5,8 @@ import model.Stanowisko;
 
 import java.util.List;
 
+
+
 public interface PracownikDAO {
     Pracownik getPracownik(int id);
     List<Pracownik> getPracownicy();

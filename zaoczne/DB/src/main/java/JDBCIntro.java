@@ -1,6 +1,6 @@
 import dao.JednostkaDAO;
 import dao.PracownikDAO;
-import dao.StawiskoDAO;
+import dao.StanowiskoDAO;
 import dao.jdbc.JednostkaDAOImpl;
 import dao.jdbc.PracownikDAOImpl;
 import dao.jdbc.StanowiskoDAOImpl;
@@ -26,7 +26,7 @@ public class JDBCIntro {
     }
 
     private static void daoTest(Connection dbCon) {
-        StawiskoDAO stanowiskoDAO = new StanowiskoDAOImpl(dbCon);
+        StanowiskoDAO stanowiskoDAO = new StanowiskoDAOImpl(dbCon);
         Stanowisko st = stanowiskoDAO.getStanowisko(2);
         System.out.println(st);
         System.out.println("===================");
