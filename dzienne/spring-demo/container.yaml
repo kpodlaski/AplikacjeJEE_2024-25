@@ -1,0 +1,15 @@
+version: '1.0'
+
+services:
+  java_for_springboot:
+    build: ./
+    hostname: springboot
+    ports:
+      - 8080:8080
+    volumes:
+      - "./src:/opt/project/src"
+    working_dir: /opt/project
+
+
+
+
