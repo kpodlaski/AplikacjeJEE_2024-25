@@ -30,12 +30,12 @@ public class PositionDAO implements dao.PositionDAO{
         this.con = con;
     }
 
-    private String selectAll = "Select id as sid, nazwa from Stanowisko";
-    private String selectById = "Select id as sid, nazwa from Stanowisko WHERE id = ?";
-    private String selectByName = "Select id as sid, nazwa from Stanowisko WHERE nazwa LIKE ?";
-    private String maxId = "Select max(id) from Stanowisko";
+    private String selectAll = "SELECT id as sid, nazwa FROM Stanowisko";
+    private String selectById = "SELECT id as sid, nazwa FROM Stanowisko WHERE id = ?";
+    private String selectByName = "SELECT id as sid, nazwa FROM Stanowisko WHERE nazwa LIKE ?";
+    private String maxId = "SELECT max(id) FROM Stanowisko";
     private String update = "UPDATE Stanowisko SET nazwa = ? WHERE id = ?";
-    private String insert = "INSERT INTO Stanowisko (id, nazwa) VALUES(?,?)";
+    private String insert = "INSERT INTO Stanowisko (nazwa) VALUES(?)";
     private String delete = "DELETE FROM Stanowisko WHERE id = ?";
 
     @Override
@@ -112,24 +112,19 @@ public class PositionDAO implements dao.PositionDAO{
 
     @Override
     public int insert(Position p) {
-        int nextId = -1;
         try {
-            PreparedStatement pstm = con.prepareStatement(maxId);
-            ResultSet rs = pstm.getResultSet();
-            rs.next();
-            nextId = rs.getInt(1)+1;
-            p.setId(nextId);
-            rs.close();
-            pstm.close();
-            pstm = con.prepareStatement(insert);
-            pstm.setInt(1,p.getId());
-            pstm.setString(2, p.getName());
+            PreparedStatement pstm = con.prepareStatement(insert);
+            pstm.setString(1, p.getName());
             pstm.executeUpdate();
+            ResultSet generatedKeys = pstm.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                    p.setId(generatedKeys.getInt(1));
+            }
             pstm.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return nextId;
+        return p.getId();
     }
 
     @Override

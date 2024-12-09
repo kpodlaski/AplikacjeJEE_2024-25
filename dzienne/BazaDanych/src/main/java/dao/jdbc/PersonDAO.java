@@ -23,13 +23,13 @@ public class PersonDAO implements dao.PersonDAO {
         }
     }
 
-    private String selectAll = "Select s.id as sid, nazwa, p.id as pid, imie, nazwisko from Stanowisko as s, Pracownik as p WHERE p.stanowisko = s.id";
-    private String selectById = "Select s.id as sid, nazwa, p.id as pid, imie, nazwisko from Stanowisko as s, Pracownik as p WHERE p.stanowisko = s.id and p.id = ?";
-    private String selectByImie = "Select s.id as sid, nazwa, p.id as pid, imie, nazwisko from Stanowisko as s, Pracownik as p WHERE p.stanowisko = s.id and imie LIKE ?";
-    private String selectByNazwisko = "Select s.id as sid, nazwa, p.id as pid, imie, nazwisko from Stanowisko as s, Pracownik as p WHERE p.stanowisko = s.id and nazwisko LIKE ?";
-    private String maxId = "Select max(id) from Pracownik";
+    private String selectAll = "SELECT s.id as sid, nazwa, p.id as pid, imie, nazwisko FROM Stanowisko as s, Pracownik as p WHERE p.stanowisko = s.id";
+    private String selectById = "SELECT s.id as sid, nazwa, p.id as pid, imie, nazwisko FROM Stanowisko as s, Pracownik as p WHERE p.stanowisko = s.id and p.id = ?";
+    private String selectByImie = "SELECT s.id as sid, nazwa, p.id as pid, imie, nazwisko FROM Stanowisko as s, Pracownik as p WHERE p.stanowisko = s.id and imie LIKE ?";
+    private String selectByNazwisko = "SELECT s.id as sid, nazwa, p.id as pid, imie, nazwisko FROM Stanowisko as s, Pracownik as p WHERE p.stanowisko = s.id and nazwisko LIKE ?";
+    private String maxId = "SELECT max(id) FROM Pracownik";
     private String update = "UPDATE Pracownik SET imie = ?, nazwisko =?, stanowisko= ? WHERE id = ?";
-    private String insert = "INSERT INTO Pracownik (id, imie, nazwisko, stanowisko) VALUES(?,?,?,?)";
+    private String insert = "INSERT INTO Pracownik (imie, nazwisko, stanowisko) VALUES(?,?,?)";
     private String delete = "DELETE FROM Pracownik WHERE id = ?";
 
     private Connection con = null;
@@ -139,31 +139,26 @@ public class PersonDAO implements dao.PersonDAO {
 
     @Override
     public int insert(Person p) {
-        int nextId = -1;
         Position pos = positionDAO.getPosition(p.getPosition().getId());
-        if (pos ==null){
+        if (pos == null){
             pos = p.getPosition();
-            pos.setId(positionDAO.insert(pos));
+            positionDAO.insert(pos);
         }
         try {
-            PreparedStatement pstm = con.prepareStatement(maxId);
-            ResultSet rs = pstm.getResultSet();
-            rs.next();
-            nextId = rs.getInt(1)+1;
-            p.setId(nextId);
-            rs.close();
-            pstm.close();
-            pstm = con.prepareStatement(insert);
-            pstm.setInt(1,p.getId());
-            pstm.setString(2, p.getName());
-            pstm.setString(3, p.getSurname());
-            pstm.setInt(4,p.getPosition().getId());
+            PreparedStatement pstm = con.prepareStatement(insert);
+            pstm.setString(1, p.getName());
+            pstm.setString(2, p.getSurname());
+            pstm.setInt(3,p.getPosition().getId());
             pstm.executeUpdate();
+            ResultSet generatedKeys = pstm.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                    p.setId(generatedKeys.getInt(1));
+                }
             pstm.close();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return nextId;
+        return p.getId();
     }
 
     @Override
